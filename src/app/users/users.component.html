@@ -1,0 +1,17 @@
+<table class="table table-light">
+  <tbody>
+    <tr>
+      <th>Nome</th>
+      <th>Cognome</th>
+      <th>Email</th>
+      <th>CF</th>
+      <th>Provincia</th>
+      <th>Telefono</th>
+      <th>Actions</th>
+
+    </tr>
+    <tr app-user *ngFor="let user of users" [user-data]="user"
+    (onDeleteUser) = "onDeleteUser($event)">
+    </tr>
+  </tbody>
+</table>
