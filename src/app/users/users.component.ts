@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UsersService } from '../services/users.service';
+import { User } from '../interfaces/user';
+import { EventEmitter } from 'protractor';
 
 // questo è il decoratore, che mi decora la classe Users. Sotto gli passo un oggetto di configurazione
 @Component({
@@ -10,6 +12,7 @@ import { UsersService } from '../services/users.service';
 
 
 export class UsersComponent implements OnInit{
+  @Output() updateUser = new EventEmitter<User>();
   title = 'Users';
   users = [];
   // un servizio è un tramite con il db
@@ -33,5 +36,10 @@ export class UsersComponent implements OnInit{
   }
   onDeleteUser(user) {
     this.service.deleteUser(user);
+  }
+  onSelectUser(user: User) {
+    alert(user.name);
+    // emetto verso il padre questo evento (il padre è l app)
+    this.updateUser.emit(user);
   }
 }

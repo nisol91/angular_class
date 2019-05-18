@@ -1,5 +1,7 @@
+import { User } from '../interfaces/user';
+
 export class UsersService {
-  users = [
+  users: Array<User> = [
     {
       name: 'Nicola',
       lastname: 'Solzi',
