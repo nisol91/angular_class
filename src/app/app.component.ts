@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from './classes/user';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angex1';
+  title = 'Angex1';
+  showForm: boolean = false;
+  userSelected: User = new User();
+  updateUser(user: User) {
+    this.showForm = true;
+    this.userSelected = user;
+  }
+  newUser() {
+    this.showForm = true;
+    this.userSelected = new User();
+  }
 }

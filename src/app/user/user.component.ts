@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UsersService } from '../services/users.service';
-import { User } from '../interfaces/user';
+import { User } from '../classes/user';
 
 @Component({
   selector: 'tr[app-user]',
@@ -12,7 +12,7 @@ export class UserComponent implements OnInit {
   @Input('user-data') user: User;
   // se faccio cancellare l elemento direttamente dal componente padre, metto in output verso il suo elemento padre degli eventi
   @Output('onDeleteUser') userDeleted = new EventEmitter();
-  @Output('onSelectUser') onUserSelected = new EventEmitter();
+  @Output('') onSelectUser = new EventEmitter();
 
   constructor(private userService: UsersService) { }
 
@@ -27,7 +27,9 @@ export class UserComponent implements OnInit {
     this.userService.deleteUser(this.user);
   }
   updateUser() {
-    this.onUserSelected.emit(this.user)
+    this.onSelectUser.emit(this.user)
   }
 
+
 }
+

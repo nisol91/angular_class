@@ -1,25 +1,34 @@
+<form action="" #f="ngForm">
+  {{f | json}}
+  {{user | json}}
+<input [(ngModel)]="user.id" id="my-input" class="form-control" type="hidden" [ngModelOptions]="{standalone: true}">
 <div class="form-group">
   <label for="my-input">First Name</label>
-  <input id="my-input" class="form-control" type="text">
+  <input [(ngModel)]="user.name" id="my-input" class="form-control" type="text" [ngModelOptions]="{standalone: true}">
 </div>
 <div class="form-group">
   <label for="my-input">Last Name</label>
-  <input id="my-input" class="form-control" type="text">
+  <input [(ngModel)]="user.lastname" id="my-input" class="form-control" type="text" [ngModelOptions]="{standalone: true}">
 </div>
 <div class="form-group">
   <label for="my-input">Fiscal</label>
-  <input id="my-input" class="form-control" type="text">
+  <input [(ngModel)]="user.fiscalcode" id="my-input" class="form-control" type="text"
+    [ngModelOptions]="{standalone: true}">
 </div>
 <div class="form-group">
   <label for="my-input">Email</label>
-  <input id="my-input" class="form-control" type="email">
+  <input [(ngModel)]="user.email" id="my-input" class="form-control" type="email" [ngModelOptions]="{standalone: true}">
 </div>
 <div class="form-group">
   <label for="my-input">Phone</label>
-  <input id="my-input" class="form-control" type="text">
+  <input [(ngModel)]="user.phone" id="my-input" class="form-control" type="text" [ngModelOptions]="{standalone: true}">
 </div>
 <div class="form-group">
-  <button class="btn">
-          Notification <span class="badge badge-primary"></span>
+  <button class="btn" (click)="resetForm()">
+    Reset
+  </button>
+  <button class="btn" (click)="saveUser()">
+    Save
   </button>
 </div>
+</form>

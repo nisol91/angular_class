@@ -1,7 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { UsersService } from '../services/users.service';
-import { User } from '../interfaces/user';
-import { EventEmitter } from 'protractor';
+import { User } from '../classes/user';
 
 // questo è il decoratore, che mi decora la classe Users. Sotto gli passo un oggetto di configurazione
 @Component({
@@ -17,7 +16,7 @@ export class UsersComponent implements OnInit{
   users = [];
   // un servizio è un tramite con il db
   // invece che istanziare la classe servizio (let service =...), uso la dependency injection
-  // va pero aggiunta ai providers la mia classe servizio.
+  // va pero aggiunta ai providers la mia classe servizio. Inietto user service in questa classe.
   constructor (private service: UsersService) {
     // let service = new UsersService();
 
@@ -38,8 +37,12 @@ export class UsersComponent implements OnInit{
     this.service.deleteUser(user);
   }
   onSelectUser(user: User) {
-    alert(user.name);
+    // alert(user.name);
+    // lavoro su una copia cosi non mi va a variare i valori nella
+    // tabella mentre li modifico, visto che i forms sono bindati alla tabella
+    const userCopy = Object.assign({}, user);
     // emetto verso il padre questo evento (il padre è l app)
-    this.updateUser.emit(user);
+    this.updateUser.emit(userCopy);
+
   }
 }
